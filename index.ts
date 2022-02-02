@@ -28,12 +28,6 @@ function verifySignature(body: any, signature: any) {
     return signature === digest;
 }
 
-// https://www.youtube.com/watch?v=NDOh2qEmSe8&t=1s
-// example aws express repo: https://github.com/serverless/examples/blob/v2/aws-node-express-api/handler.js
-// other usefull examples: https://www.serverless.com/examples?prod_EXAMPLES_SEARCH_GROWTH%5BrefinementList%5D%5Bplatform%5D%5B0%5D=aws&prod_EXAMPLES_SEARCH_GROWTH%5BrefinementList%5D%5Blanguage%5D%5B0%5D=node
-// login to aws: serverless config credentials --provider aws --key AKIA6IJ2TT4WIJUSYRUZ --secret 3O/7r3VM1b/n9S7/kHVsQhbVPjfL9QpW+xxQwRF0 -o
-// test local: serverless invoke local --function helloWorldFunction
-// deploy: sls deploy / serverless deploy
 app.get("/", (req, res, next) => {
     return res.status(200).json({
         message: "Hello from root!",
