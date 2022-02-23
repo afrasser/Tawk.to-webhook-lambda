@@ -109,8 +109,8 @@ async function sendDataToBitrix24(req, res, secretKey) {
     //const eventID = req.headers["X-Hook-Event-Id"];
     console.log(`Event ID: ${event}`);
 
-    const payload = {}
-    
+    var payload = {}
+
     switch (event) {
         case "chat:start":
             // get data from the tawk.to request
