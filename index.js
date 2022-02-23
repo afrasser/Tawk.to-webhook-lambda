@@ -109,11 +109,12 @@ async function sendDataToBitrix24(req, res, secretKey) {
     //const eventID = req.headers["X-Hook-Event-Id"];
     console.log(`Event ID: ${event}`);
 
-
+    const payload = {}
+    
     switch (event) {
         case "chat:start":
             // get data from the tawk.to request
-            const payload = {
+            payload = {
                 fields: {
                     TITLE: "Alana Fraser Valle" ,//requestBody.visitor.name,
                     UF_CRM_1625751580135: ["176"], // Servicio,
