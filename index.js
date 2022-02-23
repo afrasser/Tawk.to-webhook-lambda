@@ -29,14 +29,12 @@ function verifySignature(body, signature, secretKey) {
     console.log(`signature: ${signature}`);
     console.log(`body ${body}, signature ${signature}`)
 
-    // const digest = crypto
-    //     .createHmac("sha1", secretKey)
-    //     .update(body)
-    //     .digest("hex");
+    const digest = crypto
+        .createHmac("sha1", secretKey)
+        .update(body)
+        .digest("hex");
 
-    
-    //return signature === digest;
-    return true;
+    return signature === digest;
 }
 
 /*
@@ -52,7 +50,7 @@ function verifySignatureCololmbiaRed(body, signature) {
 */
 
 async function sendDataToBitrix24(req,res, secretKey) {
-    if (!verifySignature(req.body, req.headers["x-tawk-signature"],secretKey)) {
+    if (!verifySignature(req.rawBody, req.headers["x-tawk-signature"],secretKey)) {
         console.log("verification failed");
         //res.send("verification failed");
     }else{
@@ -61,7 +59,8 @@ async function sendDataToBitrix24(req,res, secretKey) {
 
     // how to use Bitrix24 inbound webhook: https://training.bitrix24.com/rest_help/rest_sum/webhooks.php
     const eventID = req.header("X-Hook-Event-Id");
-    eventID = "";
+    console.log(`Event ID: ${eventID}`);
+    
     switch (eventID) {
         case "chat:start":
             // get data from the tawk.to request
