@@ -109,7 +109,8 @@ async function sendDataToBitrix24(req, res, secretKey) {
     //const eventID = req.headers["X-Hook-Event-Id"];
     console.log(`Event ID: ${event}`);
 
-    var payload = {}
+    var payload = {};
+    var result = {};
 
     switch (event) {
         case "chat:start":
@@ -132,7 +133,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                 },
             };
 
-            const result = await axios.post(
+            result = await axios.post(
                 "https://colombiaredtelefoniaipsas.bitrix24.es/rest/548/an0wvpse3zzcex0a/crm.deal.add.json",
                 payload
             );
