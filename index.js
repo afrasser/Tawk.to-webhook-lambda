@@ -46,6 +46,7 @@ function verifySignature(body, signature) {
 }
 
 function verifySignatureCololmbiaRed(body, signature) {
+    console.log("signature:", signature);
     const digest = crypto
         .createHmac("sha1", "8cd6c2e8f13ba02942eb300f5a9fce7cad2dc28668a5ac9d3112fb5b81a2d1c9def0c278b1a586a006771c9f996604a3")
         .update(body)
