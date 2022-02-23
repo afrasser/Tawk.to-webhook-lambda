@@ -132,7 +132,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
             };
 
             const result = await axios.post(
-                "https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json",
+                "https://colombiaredtelefoniaipsas.bitrix24.es/rest/548/an0wvpse3zzcex0a/crm.deal.fields.json",
                 payload
             );
             // res.send(result);
