@@ -54,7 +54,7 @@ function verifySignatureCololmbiaRed(body, signature) {
     return signature === digest;
 }
 
-function sendDataToBitrix24(req,res, verifySignaturFunction){
+async function sendDataToBitrix24(req,res, verifySignaturFunction){
     if (!verifySignaturFunction(req.body, req.headers["x-tawk-signature"])) {
         res.send("verification failed");
     }
@@ -255,7 +255,7 @@ app.post("/webhookssss", async (req, res, next) => {
 
 app.post("/colombiared", async (req, res, next) => {
     try {
-        sendDataToBitrix24(req,res, verifySignatureCololmbiaRed);
+        await sendDataToBitrix24(req,res, verifySignatureCololmbiaRed);
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({
