@@ -136,7 +136,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                 payload
             );
             // res.send(result);
-            console.log("chat started");
+            console.log("chat started", result);
             res.send("chat started");
             break;
         case "chat:end":
