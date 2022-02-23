@@ -1,28 +1,28 @@
 const express = require("express");
 const logger = require("morgan");
 const crypto = require("crypto");
-var bodyParser = require('body-parser'); // to get raw body
+//var bodyParser = require('body-parser'); // to get raw body
 
 const app = express();
 
-var options = {
-    inflate: true,
-    limit: '100kb',
-    type: 'application/octet-stream'
-};
+// var options = {
+//     inflate: true,
+//     limit: '100kb',
+//     type: 'application/octet-stream'
+// };
 
-app.use(bodyParser.raw(options));
+//app.use(bodyParser.raw(options));
 app.use(logger("dev"));
 
-// custom middleware to get rawbody
-// app.use(function(req, res, next){
-//     var data = "";
-//     req.on('data', function(chunk){ data += chunk})
-//     req.on('end', function(){
-//        req.rawBody = data;
-//        next();
-//     })
-//  })
+//custom middleware to get rawbody
+app.use(function(req, res, next){
+    var data = "";
+    req.on('data', function(chunk){ data += chunk})
+    req.on('end', function(){
+       req.rawBody = data;
+       next();
+    })
+ })
 
 // app.get("/", (req, res, next) => {
 //     return res.status(200).json({
@@ -70,7 +70,7 @@ function verifySignatureCololmbiaRed(body, signature) {
 */
 
 async function sendDataToBitrix24(req, res, secretKey) {
-    if (!verifySignature(req.body, req.headers["x-tawk-signature"], secretKey)) {
+    if (!verifySignature(req.rawBody, req.headers["x-tawk-signature"], secretKey)) {
         console.log("verification failed");
         //res.send("verification failed");
     } else {
