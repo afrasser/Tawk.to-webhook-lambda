@@ -16,11 +16,11 @@ app.use(logger("dev"));
 //     });
 // });
 
-app.use((req, res, next) => {
-    return res.status(404).json({
-        error: "Not Found",
-    });
-});
+// app.use((req, res, next) => {
+//     return res.status(404).json({
+//         error: "Not Found",
+//     });
+// });
 
 const crypto = require("crypto");
 
