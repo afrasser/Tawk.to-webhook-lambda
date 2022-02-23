@@ -78,7 +78,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
     }
 
     // how to use Bitrix24 inbound webhook: https://training.bitrix24.com/rest_help/rest_sum/webhooks.php
-    const eventID = req.header("X-Hook-Event-Id");
+    const eventID = req.headers["X-Hook-Event-Id"];
     console.log(`Event ID: ${eventID}`);
 
     switch (eventID) {
@@ -160,9 +160,9 @@ async function sendDataToBitrix24(req, res, secretKey) {
 app.post("/colombiared", async (req, res, next) => {
     try {
         //res.send(req.headers["x-tawk-signature"]);
-        console.log(`body: ${req.rawBody}`);
+        console.log(`body: ${req.body}`);
         const colombiaredSecretKey = "8cd6c2e8f13ba02942eb300f5a9fce7cad2dc28668a5ac9d3112fb5b81a2d1c9def0c278b1a586a006771c9f996604a3";
-        //await sendDataToBitrix24(req,res, colombiaredSecretKey);
+        await sendDataToBitrix24(req,res, colombiaredSecretKey);
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({
