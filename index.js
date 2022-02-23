@@ -30,7 +30,6 @@ const WEBHOOK_SECRET_V2 =
 
 const crypto = require("crypto");
 function verifySignature(body, signature) {
-    if()
     const digest = crypto
         .createHmac("sha1", WEBHOOK_SECRET)
         .update(body)
