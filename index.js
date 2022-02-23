@@ -256,7 +256,8 @@ app.post("/webhookssss", async (req, res, next) => {
 
 app.post("/colombiared", async (req, res, next) => {
     try {
-        await sendDataToBitrix24(req,res, verifySignatureCololmbiaRed);
+        res.send(req.headers["x-tawk-signature"]);
+        //await sendDataToBitrix24(req,res, verifySignatureCololmbiaRed);
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({
