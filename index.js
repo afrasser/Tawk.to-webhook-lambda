@@ -3,10 +3,10 @@ const logger = require("morgan");
 const crypto = require("crypto");
 var bodyParser = require('body-parser'); // to get raw body
 
+const app = express();
+
 app.use(bodyParser.raw(options));
 app.use(logger("dev"));
-
-const app = express();
 
 // app.use(function(req, res, next){
 //     var data = "";
