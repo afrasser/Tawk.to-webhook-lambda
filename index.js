@@ -160,7 +160,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
 app.post("/colombiared", async (req, res, next) => {
     try {
         //res.send(req.headers["x-tawk-signature"]);
-        console.log(`body: ${req.body}`);
+        console.log(`body: ${req.rawBody}`);
         const colombiaredSecretKey = "8cd6c2e8f13ba02942eb300f5a9fce7cad2dc28668a5ac9d3112fb5b81a2d1c9def0c278b1a586a006771c9f996604a3";
         await sendDataToBitrix24(req,res, colombiaredSecretKey);
     } catch (error) {
