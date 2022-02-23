@@ -1,5 +1,8 @@
 const express = require("express");
+const logger = require('morgan');
 const app = express();
+
+app.use(logger('dev'));
 
 app.get("/", (req, res, next) => {
     return res.status(200).json({
