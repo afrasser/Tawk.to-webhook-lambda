@@ -38,7 +38,6 @@ app.post("/webhooks", async (req, res, next) => {
     const eventID = req.header("X-Hook-Event-Id");
     switch (eventID) {
         case "chat:start":
-
             // const queryUrl = 'https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json';
             // $queryData = http_build_query(array(
             //     'fields' => array(
@@ -55,7 +54,7 @@ app.post("/webhooks", async (req, res, next) => {
             //     ));
 
             // get data from the tawk.to request
-            const body = {
+            let body = {
                 fields: {
                     TITLE: "Saily Prueba",
                     UF_CRM_1625751580135: ["176"],
@@ -66,21 +65,58 @@ app.post("/webhooks", async (req, res, next) => {
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: "sailyvaro05@gmail.com"
+                    EMAIL: "sailyvaro05@gmail.com",
                 },
                 params: {
-                    REGISTER_SONET_EVENT: "Y"
-                }
+                    REGISTER_SONET_EVENT: "Y",
+                },
             };
 
-            const result = await axios.post("https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json", body)
+            const result = await axios.post(
+                "https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json",
+                body
+            );
             res.send(result);
 
             break;
         case "chat:end":
+            let body = {
+                fields: {
+                    TITLE: "Saily Prueba",
+                    UF_CRM_1625751580135: ["176"],
+                    UF_CRM_1626274801587: ["192"],
+                    UF_CRM_1626357192293: ["204"],
+                    UF_CRM_1638810416867: "",
+                    OPENED: "Y",
+                    ASSIGNED_BY_ID: 1,
+                    CREATED_BY_ID: 1,
+                    PHONE: "1234567890",
+                    EMAIL: "sailyvaro05@gmail.com",
+                },
+                params: {
+                    REGISTER_SONET_EVENT: "Y",
+                },
+            };
             res.send("chat end");
             break;
         case "ticket:create":
+            let body = {
+                fields: {
+                    TITLE: "Saily Prueba",
+                    UF_CRM_1625751580135: ["176"],
+                    UF_CRM_1626274801587: ["192"],
+                    UF_CRM_1626357192293: ["204"],
+                    UF_CRM_1638810416867: "",
+                    OPENED: "Y",
+                    ASSIGNED_BY_ID: 1,
+                    CREATED_BY_ID: 1,
+                    PHONE: "1234567890",
+                    EMAIL: "sailyvaro05@gmail.com",
+                },
+                params: {
+                    REGISTER_SONET_EVENT: "Y",
+                },
+            };
             res.send("ticket create");
             break;
     }
