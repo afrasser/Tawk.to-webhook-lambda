@@ -1,8 +1,19 @@
 const express = require("express");
 const logger = require("morgan");
+const crypto = require("crypto");
+
 const app = express();
 
 app.use(logger("dev"));
+
+app.use(function(req, res, next){
+    var data = "";
+    req.on('data', function(chunk){ data += chunk})
+    req.on('end', function(){
+       req.rawBody = data;
+       next();
+    })
+ })
 
 // app.get("/", (req, res, next) => {
 //     return res.status(200).json({
@@ -22,7 +33,7 @@ app.use(logger("dev"));
 //     });
 // });
 
-const crypto = require("crypto");
+
 
 function verifySignature(body, signature, secretKey) {
     
