@@ -77,7 +77,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
         console.log("verification OK!");
     }
 
-    //const requestBody = Json.encode(req.rawBody);
+    const event = req.rawBody.event;
 
     // body example
     // {
@@ -104,11 +104,11 @@ async function sendDataToBitrix24(req, res, secretKey) {
 
 
     // how to use Bitrix24 inbound webhook: https://training.bitrix24.com/rest_help/rest_sum/webhooks.php
-    const eventID = req.headers["X-Hook-Event-Id"];
-    console.log(`Event ID: ${eventID}`);
+    //const eventID = req.headers["X-Hook-Event-Id"];
+    console.log(`Event ID: ${event}`);
 
 
-    switch (eventID) {
+    switch (event) {
         case "chat:start":
             // get data from the tawk.to request
             // const body = {
@@ -180,7 +180,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
             res.send("ticket created");
             break;
         default:
-            res.send("no valid option sent", req.rawBody);
+            res.send("no valid option sent");
     }
 }
 
