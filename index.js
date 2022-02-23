@@ -29,7 +29,7 @@ function verifySignature(body, signature, secretKey) {
         .createHmac("sha1", secretKey)
         .update(body)
         .digest("hex");
-
+    console.log(`digest ${digest}, signature ${signature}`)
     return signature === digest;
 }
 
