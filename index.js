@@ -77,9 +77,36 @@ async function sendDataToBitrix24(req, res, secretKey) {
         console.log("verification OK!");
     }
 
+    //const requestBody = Json.encode(req.rawBody);
+
+    // body example
+    // {
+    //     "visitor": {
+    //         "name":"Lina Palacios",
+    //         "city":"unknown",
+    //         "country":"CO"
+    //     },
+    //     "chatId":"898d1600-94e1-11ec-9798-b33a69d7199d",
+    //     "message":{
+    //         "sender":{
+    //             "type":"visitor"
+    //         },
+    //         "text":"Nombre de La Empresa : Lina Palacios",
+    //         "type":"msg"
+    //     },
+    //     "time":"2022-02-23T19:48:17.019Z",
+    //     "event":"chat:start",
+    //     "property":{
+    //         "id":"5c659c297f688621d571cbb8",
+    //         "name":"ColombiaRed.com.co"
+    //     }
+    // }
+
+
     // how to use Bitrix24 inbound webhook: https://training.bitrix24.com/rest_help/rest_sum/webhooks.php
     const eventID = req.headers["X-Hook-Event-Id"];
     console.log(`Event ID: ${eventID}`);
+
 
     switch (eventID) {
         case "chat:start":
@@ -153,7 +180,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
             res.send("ticket created");
             break;
         default:
-            res.send("no valid option sent");
+            res.send("no valid option sent", req.rawBody);
     }
 }
 
