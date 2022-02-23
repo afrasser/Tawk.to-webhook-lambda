@@ -77,7 +77,8 @@ async function sendDataToBitrix24(req, res, secretKey) {
         console.log("verification OK!");
     }
 
-    const event = req.rawBody.event;
+    const requestBody = JSON.parse(req.rawBody);
+    const event = requestBody.event;
 
     // body example
     // {
