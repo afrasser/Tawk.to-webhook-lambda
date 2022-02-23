@@ -24,13 +24,24 @@ app.get("/hello", (req, res, next) => {
 
 const WEBHOOK_SECRET =
     "3a9a314fdbf6aac77d8e536490c05d187d467d612a884fb652267eab4c464c268bcd09a5407fb4699afdde77366ec224";
+
+const WEBHOOK_SECRET_V2 =
+    "224a30326d232527995dd2ec3967246b0410e9b688340489b7c0ee092caa59297695df66ca2a684b3791229de1d4c809";
+
 const crypto = require("crypto");
 function verifySignature(body, signature) {
+    if()
     const digest = crypto
         .createHmac("sha1", WEBHOOK_SECRET)
         .update(body)
         .digest("hex");
-    return signature === digest;
+
+    const digest_v2 = crypto
+        .createHmac("sha1", WEBHOOK_SECRET_V2)
+        .update(body)
+        .digest("hex");
+
+    return signature === digest || signature === digest_v2;
 }
 
 app.post("/webhooks", async (req, res, next) => {
