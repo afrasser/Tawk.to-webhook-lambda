@@ -115,7 +115,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
             // get data from the tawk.to request
             const payload = {
                 fields: {
-                    TITLE: "Saily Prueba" ,//requestBody.visitor.name,
+                    TITLE: "Alana Fraser Valle" ,//requestBody.visitor.name,
                     UF_CRM_1625751580135: ["176"], // Servicio,
                     UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
                     UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
@@ -124,7 +124,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: requestBody.visitor.email //"sailyvaro05@gmail.com",
+                    EMAIL: "alanafraservalle@gmai.com" //requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
@@ -136,13 +136,13 @@ async function sendDataToBitrix24(req, res, secretKey) {
                 payload
             );
             // res.send(result);
-            console.log("chat started");
+            //console.log("chat started");
             res.send("chat started");
             break;
         case "chat:end":
             payload = {
                 fields: {
-                    TITLE: "Saily Prueba" ,//requestBody.visitor.name,
+                    TITLE: "Alana Fraser Valle" ,//requestBody.visitor.name,
                     UF_CRM_1625751580135: ["176"], // Servicio,
                     UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
                     UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
@@ -151,7 +151,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: requestBody.visitor.email //"sailyvaro05@gmail.com",
+                    EMAIL: "alanafraservalle@gmai.com" //requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
@@ -163,13 +163,13 @@ async function sendDataToBitrix24(req, res, secretKey) {
                 payload
             );
             // res.send(result);
-            console.log("chat end", result);
+            //console.log("chat end", result);
             res.send("chat started");
             break;
         case "ticket:create":
             payload = {
                 fields: {
-                    TITLE: requestBody.visitor.name, // "Saily Prueba",
+                    TITLE: "Alana Fraser Valle" ,//requestBody.visitor.name,
                     UF_CRM_1625751580135: ["176"], // Servicio,
                     UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
                     UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
@@ -178,7 +178,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: requestBody.visitor.email //"sailyvaro05@gmail.com",
+                    EMAIL: "alanafraservalle@gmai.com" //requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
@@ -190,7 +190,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                 payload
             );
             // res.send(result);
-            console.log("ticket created", result);
+            //console.log("ticket created", result);
             res.send("ticket created");
             break;
         default:
