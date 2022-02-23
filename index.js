@@ -124,7 +124,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: requestBody.visitor?.email //"sailyvaro05@gmail.com",
+                    EMAIL: requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
