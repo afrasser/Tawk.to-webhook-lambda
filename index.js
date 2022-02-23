@@ -7,11 +7,11 @@ app.get("/", (req, res, next) => {
     });
 });
 
-// app.get("/hello", (req, res, next) => {
-//     return res.status(200).json({
-//         message: "Hello from path!",
-//     });
-// });
+app.get("/hello", (req, res, next) => {
+    return res.status(200).json({
+        message: "Hello from path!",
+    });
+});
 
 // app.use((req, res, next) => {
 //     return res.status(404).json({
@@ -54,7 +54,7 @@ app.post("/webhooks", async (req, res, next) => {
             //     ));
 
             // get data from the tawk.to request
-            let body = {
+            const body = {
                 fields: {
                     TITLE: "Saily Prueba",
                     UF_CRM_1625751580135: ["176"],
@@ -80,7 +80,7 @@ app.post("/webhooks", async (req, res, next) => {
 
             break;
         case "chat:end":
-            let body = {
+            body = {
                 fields: {
                     TITLE: "Saily Prueba",
                     UF_CRM_1625751580135: ["176"],
@@ -100,7 +100,7 @@ app.post("/webhooks", async (req, res, next) => {
             res.send("chat end");
             break;
         case "ticket:create":
-            let body = {
+            body = {
                 fields: {
                     TITLE: "Saily Prueba",
                     UF_CRM_1625751580135: ["176"],
