@@ -22,7 +22,7 @@ app.get("/hello", (req, res, next) => {
 //     });
 // });
 
-const WEBHOOK_SECRET = "webhook secret key";
+const WEBHOOK_SECRET = "3a9a314fdbf6aac77d8e536490c05d187d467d612a884fb652267eab4c464c268bcd09a5407fb4699afdde77366ec224";
 const crypto = require("crypto");
 function verifySignature(body, signature) {
     const digest = crypto
