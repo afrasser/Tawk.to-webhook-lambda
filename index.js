@@ -132,11 +132,11 @@ async function sendDataToBitrix24(req, res, secretKey) {
             };
 
             const result = await axios.post(
-                "https://colombiaredtelefoniaipsas.bitrix24.es/rest/548/an0wvpse3zzcex0a/crm.deal.fields.json",
+                "https://colombiaredtelefoniaipsas.bitrix24.es/rest/548/an0wvpse3zzcex0a/crm.deal.add.json",
                 payload
             );
             // res.send(result);
-            console.log("chat started", result);
+            console.log("chat started");
             res.send("chat started");
             break;
         case "chat:end":
