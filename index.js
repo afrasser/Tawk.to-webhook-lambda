@@ -115,7 +115,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
             // get data from the tawk.to request
             const payload = {
                 fields: {
-                    TITLE: requestBody.visitor.name, // "Saily Prueba",
+                    TITLE: "Saily Prueba" ,//requestBody.visitor.name,
                     UF_CRM_1625751580135: ["176"], // Servicio,
                     UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
                     UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
@@ -140,45 +140,57 @@ async function sendDataToBitrix24(req, res, secretKey) {
             res.send("chat started");
             break;
         case "chat:end":
-            body = {
+            payload = {
                 fields: {
-                    TITLE: "Saily Prueba",
-                    UF_CRM_1625751580135: ["176"],
-                    UF_CRM_1626274801587: ["192"],
-                    UF_CRM_1626357192293: ["204"],
-                    UF_CRM_1638810416867: "",
-                    OPENED: "Y",
+                    TITLE: "Saily Prueba" ,//requestBody.visitor.name,
+                    UF_CRM_1625751580135: ["176"], // Servicio,
+                    UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
+                    UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
+                    UF_CRM_1638810416867: "", // Email
+                    OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: "sailyvaro05@gmail.com",
+                    EMAIL: requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
                 },
             };
-            console.log("chat end");
-            res.send("chat end");
+
+            const result = await axios.post(
+                "https://colombiaredtelefoniaipsas.bitrix24.es/rest/548/an0wvpse3zzcex0a/crm.deal.add.json",
+                payload
+            );
+            // res.send(result);
+            console.log("chat end", result);
+            res.send("chat started");
             break;
         case "ticket:create":
-            body = {
+            payload = {
                 fields: {
-                    TITLE: "Saily Prueba",
-                    UF_CRM_1625751580135: ["176"],
-                    UF_CRM_1626274801587: ["192"],
-                    UF_CRM_1626357192293: ["204"],
-                    UF_CRM_1638810416867: "",
-                    OPENED: "Y",
+                    TITLE: requestBody.visitor.name, // "Saily Prueba",
+                    UF_CRM_1625751580135: ["176"], // Servicio,
+                    UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
+                    UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
+                    UF_CRM_1638810416867: "", // Email
+                    OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: "sailyvaro05@gmail.com",
+                    EMAIL: requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
                 },
             };
-            console.log("ticket created");
+
+            const result = await axios.post(
+                "https://colombiaredtelefoniaipsas.bitrix24.es/rest/548/an0wvpse3zzcex0a/crm.deal.add.json",
+                payload
+            );
+            // res.send(result);
+            console.log("ticket created", result);
             res.send("ticket created");
             break;
         default:
