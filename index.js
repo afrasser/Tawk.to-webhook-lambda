@@ -63,46 +63,46 @@ async function sendDataToBitrix24(req,res, verifySignaturFunction){
     const eventID = req.header("X-Hook-Event-Id");
     switch (eventID) {
         case "chat:start":
-            // const queryUrl = 'https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json';
-            // $queryData = http_build_query(array(
-            //     'fields' => array(
-            //     "TITLE" => $_REQUEST['first_name'].' '.$_REQUEST['last_name'],
-            //     "NAME" => $_REQUEST['first_name'],
-            //     "LAST_NAME" => $_REQUEST['last_name'],
-            //     "STATUS_ID" => "NEW",
-            //     "OPENED" => "Y",
-            //     "ASSIGNED_BY_ID" => 1,
-            //     "PHONE" => array(array("VALUE" => $_REQUEST['phone'], "VALUE_TYPE" => "WORK" )),
-            //     "EMAIL" => array(array("VALUE" => $_REQUEST['email'], "VALUE_TYPE" => "WORK" )),
-            //     ),
-            //     'params' => array("REGISTER_SONET_EVENT" => "Y")
-            //     ));
+            // // const queryUrl = 'https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json';
+            // // $queryData = http_build_query(array(
+            // //     'fields' => array(
+            // //     "TITLE" => $_REQUEST['first_name'].' '.$_REQUEST['last_name'],
+            // //     "NAME" => $_REQUEST['first_name'],
+            // //     "LAST_NAME" => $_REQUEST['last_name'],
+            // //     "STATUS_ID" => "NEW",
+            // //     "OPENED" => "Y",
+            // //     "ASSIGNED_BY_ID" => 1,
+            // //     "PHONE" => array(array("VALUE" => $_REQUEST['phone'], "VALUE_TYPE" => "WORK" )),
+            // //     "EMAIL" => array(array("VALUE" => $_REQUEST['email'], "VALUE_TYPE" => "WORK" )),
+            // //     ),
+            // //     'params' => array("REGISTER_SONET_EVENT" => "Y")
+            // //     ));
 
-            // get data from the tawk.to request
-            const body = {
-                fields: {
-                    TITLE: "Saily Prueba",
-                    UF_CRM_1625751580135: ["176"],
-                    UF_CRM_1626274801587: ["192"],
-                    UF_CRM_1626357192293: ["204"],
-                    UF_CRM_1638810416867: "",
-                    OPENED: "Y",
-                    ASSIGNED_BY_ID: 1,
-                    CREATED_BY_ID: 1,
-                    PHONE: "1234567890",
-                    EMAIL: "sailyvaro05@gmail.com",
-                },
-                params: {
-                    REGISTER_SONET_EVENT: "Y",
-                },
-            };
+            // // get data from the tawk.to request
+            // const body = {
+            //     fields: {
+            //         TITLE: "Saily Prueba",
+            //         UF_CRM_1625751580135: ["176"],
+            //         UF_CRM_1626274801587: ["192"],
+            //         UF_CRM_1626357192293: ["204"],
+            //         UF_CRM_1638810416867: "",
+            //         OPENED: "Y",
+            //         ASSIGNED_BY_ID: 1,
+            //         CREATED_BY_ID: 1,
+            //         PHONE: "1234567890",
+            //         EMAIL: "sailyvaro05@gmail.com",
+            //     },
+            //     params: {
+            //         REGISTER_SONET_EVENT: "Y",
+            //     },
+            // };
 
-            const result = await axios.post(
-                "https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json",
-                body
-            );
-            res.send(result);
-
+            // const result = await axios.post(
+            //     "https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json",
+            //     body
+            // );
+            // res.send(result);
+            res.send("chat started");
             break;
         case "chat:end":
             body = {
