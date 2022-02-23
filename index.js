@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const crypto = require("crypto");
+const axios = require("axios");
 //var bodyParser = require('body-parser'); // to get raw body
 
 const app = express();
@@ -114,16 +115,16 @@ async function sendDataToBitrix24(req, res, secretKey) {
             // get data from the tawk.to request
             const payload = {
                 fields: {
-                    TITLE: "Saily Prueba",
-                    UF_CRM_1625751580135: ["176"],
-                    UF_CRM_1626274801587: ["192"],
-                    UF_CRM_1626357192293: ["204"],
-                    UF_CRM_1638810416867: "",
-                    OPENED: "Y",
+                    TITLE: requestBody.visitor.name, // "Saily Prueba",
+                    UF_CRM_1625751580135: ["176"], // Servicio,
+                    UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
+                    UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
+                    UF_CRM_1638810416867: "", // Email
+                    OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
                     PHONE: "1234567890",
-                    EMAIL: "sailyvaro05@gmail.com",
+                    EMAIL: requestBody.visitor?.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
