@@ -22,27 +22,15 @@ app.get("/hello", (req, res, next) => {
 //     });
 // });
 
-const WEBHOOK_SECRET =
-    "3a9a314fdbf6aac77d8e536490c05d187d467d612a884fb652267eab4c464c268bcd09a5407fb4699afdde77366ec224";
-
-const WEBHOOK_SECRET_V2 =
-    "224a30326d232527995dd2ec3967246b0410e9b688340489b7c0ee092caa59297695df66ca2a684b3791229de1d4c809";
-
 const crypto = require("crypto");
 
-
-function verifySignature(body, signature) {
+function verifySignature(body, signature, secretKey) {
     const digest = crypto
-        .createHmac("sha1", WEBHOOK_SECRET)
+        .createHmac("sha1", secretKey)
         .update(body)
         .digest("hex");
 
-    const digest_v2 = crypto
-        .createHmac("sha1", WEBHOOK_SECRET_V2)
-        .update(body)
-        .digest("hex");
-
-    return signature === digest || signature === digest_v2;
+    return signature === digest;
 }
 
 function verifySignatureCololmbiaRed(body, signature) {
@@ -55,8 +43,9 @@ function verifySignatureCololmbiaRed(body, signature) {
     return signature === digest;
 }
 
-async function sendDataToBitrix24(req,res, verifySignaturFunction){
-    if (!verifySignaturFunction(req.body, req.headers["x-tawk-signature"])) {
+async function sendDataToBitrix24(req,res, secretKey) {
+    if (!verifySignature(req.body, req.headers["x-tawk-signature"],secretKey)) {
+        console.log("verification failed");
         res.send("verification failed");
     }
 
@@ -103,6 +92,7 @@ async function sendDataToBitrix24(req,res, verifySignaturFunction){
             //     body
             // );
             // res.send(result);
+            console.log("chat started");
             res.send("chat started");
             break;
         case "chat:end":
@@ -123,6 +113,7 @@ async function sendDataToBitrix24(req,res, verifySignaturFunction){
                     REGISTER_SONET_EVENT: "Y",
                 },
             };
+            console.log("chat end");
             res.send("chat end");
             break;
         case "ticket:create":
@@ -143,7 +134,8 @@ async function sendDataToBitrix24(req,res, verifySignaturFunction){
                     REGISTER_SONET_EVENT: "Y",
                 },
             };
-            res.send("ticket create");
+            console.log("ticket created");
+            res.send("ticket created");
             break;
         default:
             res.send("no valid option sent");
@@ -256,9 +248,9 @@ app.post("/webhookssss", async (req, res, next) => {
 
 app.post("/colombiared", async (req, res) => {
     try {
-        console.log(req.headers["x-tawk-signature"])
-        res.send(req.headers["x-tawk-signature"]);
-        //await sendDataToBitrix24(req,res, verifySignatureCololmbiaRed);
+        //res.send(req.headers["x-tawk-signature"]);
+        const colombiaredSecretKey = "8cd6c2e8f13ba02942eb300f5a9fce7cad2dc28668a5ac9d3112fb5b81a2d1c9def0c278b1a586a006771c9f996604a3";
+        await sendDataToBitrix24(req,res, colombiaredSecretKey);
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({
