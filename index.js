@@ -4,23 +4,23 @@ const app = express();
 
 app.use(logger("dev"));
 
-app.get("/", (req, res, next) => {
-    return res.status(200).json({
-        message: "App is working",
-    });
-});
-
-app.get("/hello", (req, res, next) => {
-    return res.status(200).json({
-        message: "Hello from path!",
-    });
-});
-
-// app.use((req, res, next) => {
-//     return res.status(404).json({
-//         error: "Not Found",
+// app.get("/", (req, res, next) => {
+//     return res.status(200).json({
+//         message: "App is working",
 //     });
 // });
+
+// app.get("/hello", (req, res, next) => {
+//     return res.status(200).json({
+//         message: "Hello from path!",
+//     });
+// });
+
+app.use((req, res, next) => {
+    return res.status(404).json({
+        error: "Not Found",
+    });
+});
 
 const crypto = require("crypto");
 
@@ -33,6 +33,7 @@ function verifySignature(body, signature, secretKey) {
     return signature === digest;
 }
 
+/*
 function verifySignatureCololmbiaRed(body, signature) {
     console.log("signature:", signature);
     const digest = crypto
@@ -42,6 +43,7 @@ function verifySignatureCololmbiaRed(body, signature) {
 
     return signature === digest;
 }
+*/
 
 async function sendDataToBitrix24(req,res, secretKey) {
     if (!verifySignature(req.body, req.headers["x-tawk-signature"],secretKey)) {
@@ -53,22 +55,7 @@ async function sendDataToBitrix24(req,res, secretKey) {
     const eventID = req.header("X-Hook-Event-Id");
     switch (eventID) {
         case "chat:start":
-            // // const queryUrl = 'https://restapi.bitrix24.com/rest/1/31uhq2q855fk1foj/crm.lead.add.json';
-            // // $queryData = http_build_query(array(
-            // //     'fields' => array(
-            // //     "TITLE" => $_REQUEST['first_name'].' '.$_REQUEST['last_name'],
-            // //     "NAME" => $_REQUEST['first_name'],
-            // //     "LAST_NAME" => $_REQUEST['last_name'],
-            // //     "STATUS_ID" => "NEW",
-            // //     "OPENED" => "Y",
-            // //     "ASSIGNED_BY_ID" => 1,
-            // //     "PHONE" => array(array("VALUE" => $_REQUEST['phone'], "VALUE_TYPE" => "WORK" )),
-            // //     "EMAIL" => array(array("VALUE" => $_REQUEST['email'], "VALUE_TYPE" => "WORK" )),
-            // //     ),
-            // //     'params' => array("REGISTER_SONET_EVENT" => "Y")
-            // //     ));
-
-            // // get data from the tawk.to request
+            // get data from the tawk.to request
             // const body = {
             //     fields: {
             //         TITLE: "Saily Prueba",
@@ -142,6 +129,7 @@ async function sendDataToBitrix24(req,res, secretKey) {
     }
 }
 
+/*
 app.post("/webhookssss", async (req, res, next) => {
     try {
         if (!verifySignature(req.body, req.headers["x-tawk-signature"])) {
@@ -245,6 +233,7 @@ app.post("/webhookssss", async (req, res, next) => {
     }
 
 });
+*/
 
 app.post("/colombiared", async (req, res) => {
     try {
