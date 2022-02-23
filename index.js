@@ -5,6 +5,12 @@ var bodyParser = require('body-parser'); // to get raw body
 
 const app = express();
 
+var options = {
+    inflate: true,
+    limit: '100kb',
+    type: 'application/octet-stream'
+};
+
 app.use(bodyParser.raw(options));
 app.use(logger("dev"));
 
@@ -38,7 +44,7 @@ app.use(logger("dev"));
 
 
 function verifySignature(body, signature, secretKey) {
-    
+
     console.log(`signature: ${signature}`);
     console.log(`body ${body}, signature ${signature}`)
 
@@ -62,11 +68,11 @@ function verifySignatureCololmbiaRed(body, signature) {
 }
 */
 
-async function sendDataToBitrix24(req,res, secretKey) {
-    if (!verifySignature(req.body, req.headers["x-tawk-signature"],secretKey)) {
+async function sendDataToBitrix24(req, res, secretKey) {
+    if (!verifySignature(req.body, req.headers["x-tawk-signature"], secretKey)) {
         console.log("verification failed");
         //res.send("verification failed");
-    }else{
+    } else {
         console.log("verification OK!");
     }
 
