@@ -122,6 +122,8 @@ app.post("/webhooks", async (req, res, next) => {
             };
             res.send("ticket create");
             break;
+        default:
+            res.send("no valid option sent");
     }
 });
 
