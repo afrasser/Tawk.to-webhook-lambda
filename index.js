@@ -14,6 +14,7 @@ var options = {
 app.use(bodyParser.raw(options));
 app.use(logger("dev"));
 
+// custom middleware to get rawbody
 // app.use(function(req, res, next){
 //     var data = "";
 //     req.on('data', function(chunk){ data += chunk})
