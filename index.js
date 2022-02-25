@@ -113,7 +113,6 @@ async function sendDataToBitrix24(req, res, secretKey) {
     var result = {};
 
     const {message} = requestBody;
-    const {text} = message;
 
     switch (event) {
         case "chat:start":
@@ -128,7 +127,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                     OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
-                    UTM_CONTENT: text,
+                    UTM_CONTENT: message.text == undefined ? "":message.text,
                     //PHONE: "1234567890",
                     EMAIL: requestBody.visitor.email //requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
@@ -174,7 +173,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                     OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
-                    UTM_CONTENT: text,
+                    UTM_CONTENT: message.text == undefined ? "":message.text,
                     PHONE: "1234567890",
                     EMAIL: requestBody.visitor.email
                 },
@@ -224,7 +223,7 @@ async function sendDataToBitrix24(req, res, secretKey) {
                     OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
-                    UTM_CONTENT: text,
+                    UTM_CONTENT: message.text == undefined ? "":message.text,
                     PHONE: "1234567890",
                     EMAIL: requestBody.visitor.email
                 },
