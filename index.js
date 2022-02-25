@@ -117,16 +117,17 @@ async function sendDataToBitrix24(req, res, secretKey) {
             // get data from the tawk.to request
             payload = {
                 fields: {
-                    TITLE: "Alana Fraser Valle" ,//requestBody.visitor.name,
-                    UF_CRM_1625751580135: ["176"], // Servicio,
-                    UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
-                    UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
-                    UF_CRM_1638810416867: "", // Email
+                    TITLE: requestBody.visitor.name,//requestBody.visitor.name,
+                    UF_CRM_1625751580135: ["176"], // Servicio (176 = mensajeria),
+                    //UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
+                    //UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
+                    UF_CRM_1638810416867: requestBody.visitor.email,
                     OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
-                    PHONE: "1234567890",
-                    EMAIL: "alanafraservalle@gmai.com" //requestBody.visitor.email //"sailyvaro05@gmail.com",
+                    UTM_CONTENT: requestBody.message.text,
+                    //PHONE: "1234567890",
+                    EMAIL: requestBody.visitor.email //requestBody.visitor.email //"sailyvaro05@gmail.com",
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
@@ -142,18 +143,37 @@ async function sendDataToBitrix24(req, res, secretKey) {
             res.send("chat started");
             break;
         case "chat:end":
+
+            // chat end payload example: 
+            // {
+            //     event: 'chat:end',
+            //     chatId: '70fe3290-99ad-11e9-a30a-51567162179f',
+            //     time: '2019-06-28T14:04:08.718Z',
+            //     visitor: {
+            //         name: 'V1561719148780935',
+            //         email : 'hello@test.com',
+            //         city: 'jelgava',
+            //         country: 'LV'
+            //     },
+            //     property: {
+            //         id: '58ca8453b8a7e060cd3b1ecb',
+            //         name: 'Bobs Burgers'
+            //     }
+            // }
+
             payload = {
                 fields: {
-                    TITLE: "Alana Fraser Valle" ,//requestBody.visitor.name,
+                    TITLE: requestBody.visitor.name,//requestBody.visitor.name,
                     UF_CRM_1625751580135: ["176"], // Servicio,
-                    UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
-                    UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
-                    UF_CRM_1638810416867: "", // Email
+                    //UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
+                    //UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
+                    UF_CRM_1638810416867: requestBody.visitor.email,
                     OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
+                    UTM_CONTENT: requestBody.message.text,
                     PHONE: "1234567890",
-                    EMAIL: "alanafraservalle@gmai.com" //requestBody.visitor.email //"sailyvaro05@gmail.com",
+                    EMAIL: requestBody.visitor.email
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
@@ -169,18 +189,41 @@ async function sendDataToBitrix24(req, res, secretKey) {
             res.send("chat started");
             break;
         case "ticket:create":
+
+            // ticket payload example:
+            // {
+            //     event: 'ticket:create',
+            //     time: '2019-06-28T14:07:13.512Z',
+            //     property: {
+            //         id: '58ca8453b8a7e060cd3b1ecb',
+            //         name: 'Bobs Burgers'
+            //     },
+            //     requester: {
+            //         name: 'Martins',
+            //         email: 'martins@tawk.to',
+            //         type: 'agent'
+            //     },
+            //     ticket: {
+            //         id: '02598050-99ae-11e9-8887-97564881b95b',
+            //         humanId: 3,
+            //         subject: 'Testing',
+            //         message: 'Once more through the breach'
+            //     }
+            // }
+
             payload = {
                 fields: {
-                    TITLE: "Alana Fraser Valle" ,//requestBody.visitor.name,
+                    TITLE: requestBody.visitor.name,//requestBody.visitor.name,
                     UF_CRM_1625751580135: ["176"], // Servicio,
-                    UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
-                    UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
-                    UF_CRM_1638810416867: "", // Email
+                    //UF_CRM_1626274801587: ["192"], // ORIGEN DE CAMPAÑA
+                    //UF_CRM_1626357192293: ["204"], // PROBABILIDAD DE COMPRA
+                    UF_CRM_1638810416867: requestBody.visitor.email,
                     OPENED: "Y", //
                     ASSIGNED_BY_ID: 1,
                     CREATED_BY_ID: 1,
+                    UTM_CONTENT: requestBody.message.text,
                     PHONE: "1234567890",
-                    EMAIL: "alanafraservalle@gmai.com" //requestBody.visitor.email //"sailyvaro05@gmail.com",
+                    EMAIL: requestBody.visitor.email
                 },
                 params: {
                     REGISTER_SONET_EVENT: "Y",
