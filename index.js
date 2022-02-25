@@ -112,7 +112,10 @@ async function sendDataToBitrix24(req, res, secretKey) {
     var payload = {};
     var result = {};
 
-    const {message} = requestBody;
+    var message = {}
+    if(requestBody.message != undefined) {
+        message = requestBody.message;
+    }
 
     switch (event) {
         case "chat:start":
